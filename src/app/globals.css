@@ -1,11 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --color-steel-950: #0c0d0f;
-  --color-steel-900: #15171a;
-  --color-steel-700: #2a2d32;
-  --color-steel-300: #b9bec6;
-  --color-steel-100: #e8eaee;
+  --color-steel-950: #15171a;
+  --color-steel-800: #2b2e33;
+  --color-steel-500: #6c7177;
+  --color-steel-200: #c6cace;
   --font-display: var(--font-poppins);
 }
 
@@ -15,63 +14,51 @@ body {
 }
 
 body {
-  background-color: var(--color-steel-950);
-  color: var(--color-steel-100);
+  background-color: var(--color-steel-800);
+  color: var(--color-steel-950);
   -webkit-font-smoothing: antialiased;
 }
 
-/* Brushed-steel ground: fine vertical grain + a broad raking highlight. */
+/* Photographed scratched steel, with a raking highlight and vignette on top
+   so the plate reads as lit rather than flat. */
 .steel {
   background-image:
-    repeating-linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.014) 0px,
-      rgba(255, 255, 255, 0) 1px,
-      rgba(0, 0, 0, 0.018) 3px,
-      rgba(255, 255, 255, 0) 5px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.012) 0px,
-      rgba(255, 255, 255, 0) 17px,
-      rgba(0, 0, 0, 0.02) 29px,
-      rgba(255, 255, 255, 0) 43px
+    /* Polished pool behind the mark — lifts the plate to a consistent mid tone
+       so the engraved lettering reads at any viewport. */
+    radial-gradient(
+      58% 44% at 50% 50%,
+      rgba(255, 255, 255, 0.26) 0%,
+      rgba(255, 255, 255, 0.12) 55%,
+      rgba(255, 255, 255, 0) 78%
     ),
     radial-gradient(
-      120% 85% at 78% 18%,
-      rgba(255, 255, 255, 0.16) 0%,
-      rgba(255, 255, 255, 0.04) 38%,
-      rgba(0, 0, 0, 0) 70%
+      115% 75% at 82% 70%,
+      rgba(255, 255, 255, 0.22) 0%,
+      rgba(255, 255, 255, 0.05) 42%,
+      rgba(0, 0, 0, 0) 68%
     ),
-    linear-gradient(165deg, #1d2024 0%, #101215 45%, #0a0b0d 100%);
+    radial-gradient(
+      130% 95% at 50% 45%,
+      rgba(0, 0, 0, 0) 40%,
+      rgba(0, 0, 0, 0.45) 100%
+    ),
+    url("/steel.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
-/* Film grain, kept subtle so the wordmark stays crisp. */
-.grain::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.4;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-}
-
-/* Milled-metal lettering: bright gradient face, dark bed beneath it. */
+/* "açaí": cut into the plate — dark bed with a light lip along the lower edge. */
 .engraved {
-  background-image: linear-gradient(
-    175deg,
-    #ffffff 0%,
-    #cfd4dc 28%,
-    #8a9099 52%,
-    #e6eaef 74%,
-    #9ba1aa 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.55))
-    drop-shadow(0 0 22px rgba(190, 205, 225, 0.12));
+  color: #15171a;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.5),
+    0 2px 3px rgba(255, 255, 255, 0.18),
+    0 -1px 1px rgba(0, 0, 0, 0.5);
+}
+
+/* "lab": the same cut, drawn in the mark's thin weight. */
+.engraved-light {
+  color: rgba(21, 23, 26, 0.72);
 }
 
 @keyframes rise {
@@ -93,4 +80,10 @@ body {
   .rise {
     animation: none;
   }
+}
+
+/* Caption sits in the plate too, just shallower. */
+.engraved-caption {
+  color: rgba(21, 23, 26, 0.78);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
 }
