@@ -31,7 +31,7 @@ export default function Home() {
           className="mt-10 h-px w-28 bg-gradient-to-r from-transparent via-black/30 to-transparent sm:w-40"
         />
 
-        <p className="engraved-caption mt-10 text-center text-[0.72rem] font-normal uppercase tracking-[0.42em] sm:text-xs">
+        <p className="engraved-caption mt-10 text-center text-[0.8rem] font-medium uppercase tracking-[0.34em] sm:text-sm sm:tracking-[0.38em]">
           Coming soon
         </p>
       </div>
